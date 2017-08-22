@@ -32,9 +32,9 @@ Color theme and beamer style is included. The image files were created using Omn
 5. Examples
 ----------
 
-![Title page](https://github.com/haechi/sogang-beamer/blob/master/imgages/img-titlepage.jpg)
+![Title page](https://github.com/haechi/beamer-sogang/blob/master/imgages/img-titlepage.jpg)
 
-![Block environment](https://github.com/haechi/sogang-beamer/blob/master/imgages/img-blocks.jpg)
+![Block environment](https://github.com/haechi/beamer-sogang/blob/master/images/img-blocks.jpg)
 
 6. License
 ----------
