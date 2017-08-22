@@ -1,0 +1,157 @@
+\ProvidesPackage{beamerthemesogang}[2011/11/24]
+\RequirePackage{tikz}
+\RequirePackage{calc}
+
+\RequirePackage[scriptsize,it]{caption}
+\captionsetup{labelformat=empty,labelsep=none}
+
+\mode<presentation>
+
+%%% variables and options
+\def\beamer@sogang@value@true{true}
+\def\beamer@sogang@value@false{false}
+\def\beamer@sogang@value@empty{}
+
+\def\beamer@sogang@url{}
+\def\beamer@sogang@numbering{}
+\def\beamer@sogang@titlepagelayout{}
+
+\newlength{\beamer@sogang@menuwidth}
+\newlength{\beamer@sogang@restofmenuwidth}
+
+\setlength{\beamer@sogang@menuwidth}{.3\paperwidth}
+
+\DeclareOptionBeamer{url}[{www.sogang.ac.kr}]{\def\beamer@sogang@url{#1}}
+\DeclareOptionBeamer{numbering}[true]{\def\beamer@sogang@numbering{#1}}
+\DeclareOptionBeamer{titlepagelayout}[]{\def\beamer@sogang@titlepagelayout{#1}}
+\DeclareOptionBeamer{menuwidth}[]{\setlength{\beamer@sogang@menuwidth}{#1}}
+
+\ProcessOptionsBeamer
+
+\setlength{\beamer@sogang@restofmenuwidth}{0.95\paperwidth}
+\addtolength\beamer@sogang@restofmenuwidth{-\beamer@sogang@menuwidth}
+
+
+
+\useinnertheme{circles}
+\useoutertheme{miniframes}
+
+\usecolortheme{sogang}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{background canvas}[vertical shading][bottom=white,middle=white!15,top=gray!25]
+
+% TITLE PAGE
+\defbeamertemplate*{title page}{titlepage}
+{
+  \thispagestyle{empty}
+
+  \begin{picture}(0,0)(0,0)
+    \put(-29,-171){\includegraphics[width=1.01\paperwidth]{images/titlepage.pdf}}
+  \end{picture}
+
+  \begin{picture}(0,0)(0,0)
+    \put(10,30){
+        \begin{minipage}{0.9\linewidth}
+        \centering{\LARGE\color{sogangwhite} \inserttitle\par}
+        \vspace{3mm}
+        \centering{\large\color{soganglightgrey} \insertsubtitle\par}
+        \end{minipage}
+    }
+  \end{picture}
+  \begin{picture}(0,0)(0,0)
+    \put(10,-15){
+        \begin{minipage}{0.90\linewidth}
+        \centering{\large\color{sogangwhite} \insertauthor\par}
+        \end{minipage}
+    }
+  \end{picture}
+  \begin{picture}(0,0)(0,0)
+    \put(10,-125){
+        \begin{minipage}{0.90\linewidth}
+        \centering{\color{sogangblack} \insertinstitute\par}
+        \end{minipage}
+    }
+  \end{picture}
+
+}
+
+% HEADER
+\defbeamertemplate*{headline}{sogang}%
+{
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=1em,sep=0.2em]{headerline title}
+    \begin{minipage}{\beamer@sogang@restofmenuwidth}
+        {\tiny{\bfseries SOGANG} UNIVERSITY}%
+    \end{minipage}
+    \hspace{0px}
+    \begin{minipage}{\beamer@sogang@menuwidth}
+      \begin{flushright}
+	  	\vspace{5px}
+        \insertsectionnavigationhorizontal{\beamer@sogang@menuwidth}{}{}
+      \end{flushright}
+    \end{minipage}
+    
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth,sep=1px]{headerline border}
+    \vspace{1px}
+  \end{beamercolorbox}
+}
+
+% FOOTER
+\defbeamertemplate*{footline}{sogang}
+{
+%\leavevmode%
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=1em,sep=0.2em]{footerline}
+    \insertshorttitle\;--\;\insertshortauthor \hfill %
+    \ifx\beamer@sogang@numbering\beamer@sogang@value@false\relax\else
+        \insertframenumber/\inserttotalframenumber %
+    \fi
+  \end{beamercolorbox}  
+}
+
+
+% SECTION LIST
+\usesectionheadtemplate
+{ %active
+  \color{sogangred} \insertsectionhead
+}
+{ %other
+  \color{soganglightgrey} \insertsectionhead
+}
+
+% BACKGROUND IMAGE
+\setbeamertemplate{background}{
+  \ifnum\insertframenumber=1\else
+  \parbox[r][\paperheight]{\paperwidth}{
+    \vfill\hfill
+    \includegraphics[width=60px]{images/watermark.pdf}
+  }
+  \fi
+}
+
+
+\defbeamertemplate*{frametitle}{}
+{
+  \begin{beamercolorbox}[sep=0ex,ht= 2.5ex, wd=\paperwidth]{}
+    \hspace{2ex}\insertframetitle{} \hspace{1ex}\hrulefill %
+  \end{beamercolorbox}%
+}
+
+%
+\newcommand{\sectionframe}[1]
+{
+    \begin{beamercolorbox}[wd=\textwidth]{footerline}
+        \begin{minipage}{\textwidth}
+          \vspace{1em}
+          \centering\Large{\color{white}{#1}}
+          \vspace{1em}
+        \end{minipage}%
+    \end{beamercolorbox}%
+    \nointerlineskip
+    \begin{beamercolorbox}[sep=0ex,ht=2pt, wd=\textwidth]{headerline border}
+    \end{beamercolorbox}%
+}
+%\mode<handout>
+
+\mode
+<all>
